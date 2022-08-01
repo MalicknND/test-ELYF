@@ -2,6 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor(props) {
@@ -45,6 +46,8 @@ class Home extends React.Component {
           <tr>
             <th>#</th>
             <th>Nom du produit</th>
+            <th>Image</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +55,16 @@ class Home extends React.Component {
             <tr key={product._id}>
               <td>{product._id}</td>
               <td>{product.product_name}</td>
+              <td>
+                <img src={product.image_front_small_url} height="50" alt="" />
+              </td>
+              <td>
+                <Button variant="primary">
+                  <Link to={`/${product._id}`} style={{ color: '#FFF' }}>
+                    Voir plus
+                  </Link>
+                </Button>{' '}
+              </td>
             </tr>
           ))}
         </tbody>

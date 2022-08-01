@@ -1,19 +1,29 @@
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 
 class Header extends React.Component {
   render() {
     return (
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar bg="primary" variant="dark">
+        <Container>
+          <Navbar.Brand href="/">Open Food</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
+            <Nav.Link href="">Home</Nav.Link>
+            <form className="d-flex" role="search">
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Rechercher"
+                aria-label="Search"
+              />
+              <button className="btn btn-outline-light" type="submit">
+                Rechercher
+              </button>
+            </form>
           </Nav>
-        </Navbar.Collapse>
+        </Container>
       </Navbar>
     );
   }
