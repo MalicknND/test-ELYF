@@ -33,77 +33,40 @@ function Product() {
     );
   }
   return (
-    // <div>
-    //   <p>
-    //     <span>Nom du produit : {product.product_name} </span>
-    //   </p>
-    //   <p>
-    //     {product.ingredients_text} <img src={product.image_front_small_url} height="200" alt="" />
-
-    //   </p>
-    // </div>
-
-    // <Container>
-    //   <Row>
-    //     <Col>
-    //       <Card style={{ width: '18rem' }}>
-    //         <Card.Body>
-    //           <Card.Title>Ingredients</Card.Title>
-    //           <Card.Text>
-    //             <span>
-    //               Nom du produit : {product.product_name} <br /> Ingredients :{' '}
-    //               {product.ingredients_text}
-    //             </span>
-    //           </Card.Text>
-    //         </Card.Body>
-    //       </Card>
-    //     </Col>
-    //     <Col>{product.ingredients_text}</Col>
-    //     <Col>
-    //       <img src={product.image_front_small_url} height="400" alt="" />
-    //     </Col>
-    //   </Row>
-    // </Container>
-
     <CardGroup>
       <Card>
-        <Card.Img variant="top" src="holder.js/100px160" />
+        <Card.Body>
+          <Card.Title>Description</Card.Title>
+          <Card.Text>
+            <span>
+              Id : {product.code} <br /> Nom du produit : {product.product_name}{' '}
+              <br /> Createur : {product.creator} <br /> Quantité :{' '}
+              {product.quantity} <br /> Marque : {product.brands_tags}
+            </span>
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted"></small>
+        </Card.Footer>
+      </Card>
+      <Card>
         <Card.Body>
           <Card.Title>Ingredients</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
-          </Card.Text>
+          <Card.Text>{product.ingredients_text_fr}</Card.Text>
         </Card.Body>
         <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
+          <small className="text-muted"></small>
         </Card.Footer>
       </Card>
       <Card>
-        <Card.Img variant="top" src="holder.js/100px160" />
         <Card.Body>
-          <Card.Title>Card title</Card.Title>
+          <Card.Title>Image</Card.Title>
           <Card.Text>
-            This card has supporting text below as a natural lead-in to
-            additional content.{' '}
+            <img src={product.image_front_small_url} height="200" alt="" />
           </Card.Text>
         </Card.Body>
         <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src="holder.js/100px160" />
-        <Card.Body>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This card has even longer content than the
-            first to show that equal height action.
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
+          <small className="text-muted"></small>
         </Card.Footer>
       </Card>
     </CardGroup>

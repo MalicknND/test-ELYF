@@ -10,7 +10,6 @@ class Header extends React.Component {
         <Container>
           <Navbar.Brand href="/">Open Food</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="">Home</Nav.Link>
             <form className="d-flex" role="search">
               <input
                 className="form-control me-2"
