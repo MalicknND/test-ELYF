@@ -1,50 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import { Link } from 'react-router-dom';
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: false,
-      products: [],
-    };
-  }
-  componentDidMount() {
-    fetch('https://world.openfoodfacts.org?json=true')
-      .then((res) => res.json())
-      .then((result) => {
-        this.setState({
-          isLoaded: true,
-          products: result.products,
-        });
-      });
-  }
+function Home() {
+  const [q, setQ] = useState('');
 
-  render() {
-    const { isLoaded, products } = this.state;
-    if (!isLoaded) {
-      return (
-        <Button variant="primary" disabled>
-          <Spinner
-            as="span"
-            animation="grow"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />
-          Loading...
-        </Button>
-      );
-    }
+  let [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetch('https://fr.openfoodfacts.org?json=true')
+      .then((res) => res.json())
+      .then((result) => setProducts(result.products));
+  }, []);
+
+  const handleClick = () => {
+    setProducts([]);
+    fetch(
+      'https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=brands&tag_contains_0=contains&sort_by=unique_scans_n&page_size=20&json=true&tag_0=' +
+        q
+    )
+      .then((res) => res.json())
+      .then((result) => setProducts(result.products));
+  };
+
+  if (!products.length) {
     return (
+      <Button variant="primary" disabled>
+        <Spinner
+          as="span"
+          animation="grow"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        Loading...
+      </Button>
+    );
+  }
+  return (
+    <>
+      <form className="d-flex mb-2" role="search">
+        <input
+          className="form-control me-2"
+          type="search"
+          placeholder="Recherche par marque de produit"
+          aria-label="Search"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+        />
+        <Button onClick={handleClick} variant="primary">
+          Rechercher
+        </Button>
+      </form>
+
       <Table striped bordered hover size="sm">
         <thead>
           <tr>
-            <th>#</th>
+            <th>Id</th>
             <th>Nom du produit</th>
             <th>Image</th>
             <th>Actions</th>
@@ -60,7 +73,10 @@ class Home extends React.Component {
               </td>
               <td>
                 <Button variant="primary">
-                  <Link to={`/${product._id}`} style={{ color: '#FFF' }}>
+                  <Link
+                    to={`/${product._id}`}
+                    style={{ color: '#FFF', textDecoration: 'none' }}
+                  >
                     Voir plus
                   </Link>
                 </Button>{' '}
@@ -69,8 +85,8 @@ class Home extends React.Component {
           ))}
         </tbody>
       </Table>
-    );
-  }
+    </>
+  );
 }
 
 export default Home;

@@ -13,7 +13,7 @@ function Product() {
 
   let [product, setProduct] = useState(null);
   useEffect(() => {
-    fetch('https://world.openfoodfacts.org/api/v2/product/' + id)
+    fetch('https://fr.openfoodfacts.org/api/v2/product/' + id)
       .then((res) => res.json())
       .then((result) => setProduct(result.product));
   });
@@ -72,28 +72,6 @@ function Product() {
     </CardGroup>
   );
 }
-// class Product extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       isLoaded: false,
-//       product: null,
-//     };
-//   }
-//   componentDidMount() {
-//     console.log(this.props);
-//     fetch('https://world.openfoodfacts.org/api/v2/product/04963406')
-//       .then((res) => res.json())
-//       .then((result) => {
-//         this.setState({
-//           isLoaded: true,
-//           product: result.product,
-//         });
-//       });
-//   }
-//   render() {
-//     return <div>Détails</div>;
-//   }
-// }
+//
 
 export default Product;
